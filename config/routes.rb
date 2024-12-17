@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get '/movies', to: 'movie#index'
-      get '/movies/:id', to: 'movie#show'
+      get 'movies', to: 'movie#index'
 
-      post '/session/create', to: "session#create"
-      delete '/session/destroy', to: "session#destroy"
+      post 'session/create'
+      delete 'session/destroy'
       
       post '/user/registration', to: 'user#create'
-      put '/user/update', to: 'user#update'
+      put 'user/update'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
