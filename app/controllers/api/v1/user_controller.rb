@@ -6,7 +6,7 @@ class Api::V1::UserController < ApplicationController
       if @user.save
         render json: { message: "SUCEFULL", data: { user: { email: @user.email, access_token: @user.access_token } } }, status: 201
       else
-        render json: { message: "INVALID PARAMETERS" }, status: 409
+        render json: { message: "INVALID PARAMETERS" }, status: 401
       end
     else
       render json: { message: "NOT FOUND" }, status: 404

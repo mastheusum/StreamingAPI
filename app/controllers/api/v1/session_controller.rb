@@ -1,6 +1,7 @@
 class Api::V1::SessionController < ApplicationController
   def create
     @user = User.find_by email: session_params[:email]
+    puts @user
     if @user and @user.authenticate(session_params[:password])
       render json: { message: 'Login realizado com sucesso', data: { user: { email: @user.email, access_token: @user.access_token } } }, status: 200
     else
@@ -9,6 +10,7 @@ class Api::V1::SessionController < ApplicationController
   end
 
   def destroy
+    puts session_params
     if session_params.key?(:email)
       @user = User.find_by email: session_params[:email]
       if @user
