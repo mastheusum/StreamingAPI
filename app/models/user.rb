@@ -10,6 +10,7 @@ class User < ApplicationRecord
     
     def destroy_session
         self.generate_access_token
+        self.save
     end
 
     private
@@ -18,6 +19,7 @@ class User < ApplicationRecord
                 self.access_token = "#{SecureRandom.hex(10)}#{Time.now.to_i}"
                 break unless User.exists?(access_token: self.access_token)
             end
+            self.save
         end
 
 end
