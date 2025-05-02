@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_21_192458) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_02_192055) do
+  create_table "api_v2_sessions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "access_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_api_v2_sessions_on_user_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
@@ -32,4 +40,5 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_21_192458) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "api_v2_sessions", "users"
 end

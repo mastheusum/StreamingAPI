@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   namespace :api do
+    namespace :v2 do
+      get 'movies', to: "movie#index"
+      post 'sessions/create'
+      post 'session/create', to: 'sessions#create'
+      delete 'sessions/destroy'
+      delete 'session/destroy', to: 'sessions#destroy'
+
+      post 'user/registration', to: 'user#create'
+      delete "user/destroy"
+    end
     namespace :v1 do
       get 'movies', to: 'movie#index'
 
